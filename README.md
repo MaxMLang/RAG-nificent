@@ -42,7 +42,7 @@ The application utilizes a combination of OpenAI embeddings, Pinecone vector sea
 5. Place your PDFs in the `pdf_data` directory and run `data_ingestion.py`
 6. Run the application:
    ```bash
-   chainlit run app.py
+   chainlit run src/app.py
    ```
 
 ## Source Documents
