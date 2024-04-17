@@ -10,7 +10,7 @@ dotenv.load_dotenv()
 
 
 
-file_path = 'pdf_data'
+file_path = '../pdf_data'
 
 directory_loader = DirectoryLoader(file_path, loader_cls=PyPDFLoader)
 raw_docs = directory_loader.load()
