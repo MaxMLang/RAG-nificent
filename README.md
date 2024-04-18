@@ -1,14 +1,14 @@
-# RAG-nificent: Real-time Accessible PDFs, Reports, and Guidelines
+# RAG-nificent: An AI Chatbot powered by LLMs for Citation of Custom PDFs, Reports, and Guidelines
 <p align="center">
   <img src="assets/logo.png" alt="Lightning Chatbot Logo" width="200" height="200">
 </p>
-RAG-nificent is a state-of-the-art repository that leverages the power of Retrieval-Augmented Generation (RAG) to provide instant answers and references from a curated directory of PDFs containing UN guidelines and other regulatory documents. This system is designed to aid researchers, policy makers, and the public in quickly finding specific information within extensive documents.
+RAG-nificent is a state-of-the-art repository that leverages the power of Retrieval-Augmented Generation (RAG) to provide instant answers and references from a curated directory of PDFs containing information on any given topic such as WHO recommendations documents. This system is designed to aid researchers, policy makers, and the public in quickly finding specific information within extensive documents.
 
 ## Features
 
 - **Conversational Interface**: Engage with the system using natural language queries to receive responses directly sourced from the PDFs.
 - **Direct Citation**: Every response from the system includes a direct link to the source PDF page, ensuring traceability and verification.
-- **PDF Directory**: A predefined set of key PDF documents, currently including UN guidelines on major health topics such as schistosomiasis and malaria.
+- **PDF Directory**: A predefined set of key PDF documents, currently including WHO recommendations on major health topics such as schistosomiasis and malaria.
 
 ## Demo
 
@@ -42,7 +42,7 @@ The application utilizes a combination of OpenAI embeddings, Pinecone vector sea
 5. Place your PDFs in the `pdf_data` directory and run `data_ingestion.py`
 6. Run the application:
    ```bash
-   chainlit run app.py
+   chainlit run src/app.py
    ```
 
 ## Source Documents
