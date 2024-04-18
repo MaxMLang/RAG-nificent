@@ -1,4 +1,4 @@
-# RAG-nificent: Real-time Accessible PDFs, Reports, and Guidelines
+# RAG-nificent: An AI Chatbot powered by LLMs for Citation of Custom PDFs, Reports, and Guidelines
 <p align="center">
   <img src="assets/logo.png" alt="Lightning Chatbot Logo" width="200" height="200">
 </p>
