@@ -4,9 +4,11 @@ import dotenv
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 from langchain.chat_models import ChatOpenAI
+from langchain_groq import ChatGroq
 from langchain_pinecone import Pinecone
 from langchain.docstore.document import Document
 from langchain.memory import ChatMessageHistory, ConversationBufferMemory
+from chainlit.input_widget import Select, Switch, Slider
 import re
 import chainlit as cl
 dotenv.load_dotenv()
@@ -18,30 +20,56 @@ pdf_data = {
 
 @cl.on_chat_start
 async def on_chat_start():
+
+    settings = await cl.ChatSettings(
+        [
+            Select(
+                id="model",
+                label="Choose Model",
+                values=["gpt-3.5-turbo", 'llama3-70b-8192', 'llama3-8b-8192','mixtral-8x7b-32768', 'llama2-70b-4096', 'gemma-7b-it'],
+                initial_index=1,
+            ),
+            Slider(
+                id="temperature",
+                label="OpenAI - Temperature",
+                initial=1,
+                min=0,
+                max=2,
+                step=0.1,
+            )]).send()
+    await setup_agent(settings)
+
+
+    # Let the user know that the system is ready
+    await cl.Message(content="Hello, I am here to help you with questions on your provided PDF files.").send()
+
+
+
+@cl.on_settings_update
+async def setup_agent(settings):
     embeddings = OpenAIEmbeddings()
-    docsearch = Pinecone.from_existing_index(index_name=os.getenv("PINECONE_INDEX_NAME"), embedding=embeddings, namespace= os.getenv("PINECONE_NAME_SPACE"))
+    docsearch = Pinecone.from_existing_index(index_name=os.getenv("PINECONE_INDEX_NAME"), embedding=embeddings,
+                                             namespace=os.getenv("PINECONE_NAME_SPACE"))
     retriever = docsearch.as_retriever(search_type="similarity")
     message_history = ChatMessageHistory()
-
     memory = ConversationBufferMemory(
         memory_key="chat_history",
         output_key="answer",
         chat_memory=message_history,
         return_messages=True,
     )
-
-    # Create a chain that uses the Pinecone vector store
+    if (settings['model'] == "gpt-3.5-turbo"):
+        llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature = settings['temperature'], streaming=True)
+    else:
+        llm = ChatGroq(model_name=settings['model'], temperature = settings['temperature'], streaming= True, api_key=os.getenv("GROQ_API_KEY"))
+        # Create a chain that uses the Pinecone vector store
     chain = ConversationalRetrievalChain.from_llm(
-        ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, streaming=True),
+        llm,
         chain_type="stuff",
         retriever=retriever,
         memory=memory,
         return_source_documents=True,
     )
-
-    # Let the user know that the system is ready
-    await cl.Message(content="Hello, I am here to help you with questions on your provided PDF files.").send()
-
     cl.user_session.set("chain", chain)
 
 

@@ -10,6 +10,14 @@ RAG-nificent is a state-of-the-art repository that leverages the power of Retrie
 - **Direct Citation**: Every response from the system includes a direct link to the source PDF page, ensuring traceability and verification.
 - **PDF Directory**: A predefined set of key PDF documents, currently including WHO recommendations on major health topics such as schistosomiasis and malaria.
 
+## Available Models
+- 📘 ChatGPT-3.5: Utilize this advanced iteration of the GPT model for engaging and human-like interactions, suitable for varied conversational tasks.
+- 🦙 **Llama3-70B-8192**: Experience high-end performance with this large-scale model, ideal for complex language tasks and deep learning insights.
+- 🦙 **Llama3-8B-8192**: Harness robust capabilities with this more accessible version of Llama3, perfect for a wide range of AI applications.
+- 🌟 **Mixtral-8x7B-32768**: Leverage the power of ensemble modeling with Mixtral's extensive capacity for nuanced understanding and response generation.
+- 🦙 **Llama2-70B-4096**: Utilize the proven effectiveness of Llama2 for comprehensive language processing and application development.
+- 💎 **Gemma-7B-IT**: Explore specialized interactions and tech-focused solutions with Gemma, tailored for IT and technical content. 
+
 ## Demo
 
 ![RAG-nificent Demo](assets/demo.gif)
@@ -37,6 +45,7 @@ The application utilizes a combination of OpenAI embeddings, Pinecone vector sea
    - `PINECONE_NAME_SPACE`
    - `OPENAI_API_KEY`
    - `PINECONE_API_KEY`
+   - `GROQ_API_KEY
 
 4. Create a [Pinecone](pinecone.io) index with the same name as  `PINECONE_INDEX_NAME`. Set it up with `dimensions=1536` and `metric=cosine`.
 5. Place your PDFs in the `pdf_data` directory and run `data_ingestion.py`
