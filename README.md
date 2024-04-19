@@ -1,4 +1,5 @@
 # RAG-nificent: An AI Chatbot powered by LLMs for Citation of Custom PDFs, Reports, and Guidelines
+## Supports Llama-3 by Meta AI
 <p align="center">
   <img src="assets/logo.png" alt="Lightning Chatbot Logo" width="200" height="200">
 </p>
@@ -11,7 +12,7 @@ RAG-nificent is a state-of-the-art repository that leverages the power of Retrie
 - **PDF Directory**: A predefined set of key PDF documents, currently including WHO recommendations on major health topics such as schistosomiasis and malaria.
 
 ## Available Models
-- 📘 ChatGPT-3.5: Utilize this advanced iteration of the GPT model for engaging and human-like interactions, suitable for varied conversational tasks.
+- 📘 **ChatGPT-3.5**: Utilize this advanced iteration of the GPT model for engaging and human-like interactions, suitable for varied conversational tasks.
 - 🦙 **Llama3-70B-8192**: Experience high-end performance with this large-scale model, ideal for complex language tasks and deep learning insights.
 - 🦙 **Llama3-8B-8192**: Harness robust capabilities with this more accessible version of Llama3, perfect for a wide range of AI applications.
 - 🌟 **Mixtral-8x7B-32768**: Leverage the power of ensemble modeling with Mixtral's extensive capacity for nuanced understanding and response generation.
