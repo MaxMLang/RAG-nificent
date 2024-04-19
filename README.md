@@ -21,7 +21,7 @@ RAG-nificent is a state-of-the-art repository that leverages the power of Retrie
 
 ## Demo
 
-![RAG-nificent Demo](assets/demo.gif)
+![RAG-nificent Demo](assets/demov0.0.2.gif)
 
 ## How It Works
 
