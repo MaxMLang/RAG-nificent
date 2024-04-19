@@ -1,4 +1,5 @@
 # RAG-nificent: An AI Chatbot powered by LLMs for Citation of Custom PDFs, Reports, and Guidelines
+## Supports Llama-3 by Meta AI
 <p align="center">
   <img src="assets/logo.png" alt="Lightning Chatbot Logo" width="200" height="200">
 </p>
