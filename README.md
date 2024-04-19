@@ -53,7 +53,5 @@ The system currently includes guidelines from the following PDFs with direct lin
 - [WHO guidelines for malaria (2023)](https://iris.who.int/bitstream/handle/10665/373339/WHO-UCN-GMP-2023.01-Rev.1-eng.pdf)
 
 
-## License
 
-This project is licensed under the MIT License.
 
