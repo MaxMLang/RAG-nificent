@@ -46,7 +46,7 @@ The application utilizes a combination of OpenAI embeddings, Pinecone vector sea
    - `PINECONE_NAME_SPACE`
    - `OPENAI_API_KEY`
    - `PINECONE_API_KEY`
-   - `GROQ_API_KEY
+   - `GROQ_API_KEY`
 
 4. Create a [Pinecone](pinecone.io) index with the same name as  `PINECONE_INDEX_NAME`. Set it up with `dimensions=1536` and `metric=cosine`.
 5. Place your PDFs in the `pdf_data` directory and run `data_ingestion.py`
