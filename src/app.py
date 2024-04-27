@@ -26,7 +26,7 @@ async def on_chat_start():
             Select(
                 id="model",
                 label="Choose Model",
-                values=["gpt-3.5-turbo", 'llama3-70b-8192', 'llama3-8b-8192','mixtral-8x7b-32768', 'llama2-70b-4096', 'gemma-7b-it'],
+                values=["gpt-3.5-turbo", 'llama3-70b-8192', 'llama3-8b-8192','mixtral-8x7b-32768', 'gemma-7b-it'],
                 initial_index=1,
             ),
             Slider(
