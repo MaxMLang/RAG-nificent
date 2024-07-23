@@ -26,8 +26,8 @@ async def on_chat_start():
             Select(
                 id="model",
                 label="Choose Model",
-                values=["gpt-3.5-turbo", 'llama3-70b-8192', 'llama3-8b-8192','mixtral-8x7b-32768', 'gemma-7b-it'],
-                initial_index=1,
+                values=["llama-3.1-8b-instant", "llama-3.1-70b-versatile", "gpt-3.5-turbo", 'llama3-70b-8192', 'llama3-8b-8192','mixtral-8x7b-32768', 'gemma-7b-it'],
+                initial_index=0,
             ),
             Slider(
                 id="temperature",
