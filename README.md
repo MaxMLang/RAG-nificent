@@ -4,8 +4,7 @@
 <p align="center">
   <img src="assets/logo.png" alt="Lightning Chatbot Logo" width="200" height="200">
 </p>
-
-RAG-nificent is a state-of-the-art repository that leverages the power of Retrieval-Augmented Generation (RAG) to provide instant answers and references from a curated directory of PDFs containing information on any given topic, such as WHO recommendation documents. This system is designed to aid researchers, policymakers, and the public in quickly finding specific information within extensive documents.
+RAG-nificent is a state-of-the-art repository that leverages the power of Retrieval-Augmented Generation (RAG) to provide instant answers and references from a curated directory of PDFs containing information on any given topic such as WHO recommendations documents. This system is designed to aid researchers, policy makers, and the public in quickly finding specific information within extensive documents.
 
 ## Features
 
@@ -45,14 +44,14 @@ The application utilizes a combination of OpenAI embeddings, Pinecone vector sea
    ```bash
    pip install -r requirements.txt
    ```
-3. Set environment variables in a `.env` file (also see `.env.example`):
+3. Set environment variables in a `.env` (also see `.env.example`file:
    - `PINECONE_INDEX_NAME`
    - `PINECONE_NAME_SPACE`
    - `OPENAI_API_KEY`
    - `PINECONE_API_KEY`
    - `GROQ_API_KEY`
 
-4. Create a [Pinecone](https://pinecone.io) index with the same name as `PINECONE_INDEX_NAME`. Set it up with `dimensions=1536` and `metric=cosine`.
+4. Create a [Pinecone](pinecone.io) index with the same name as  `PINECONE_INDEX_NAME`. Set it up with `dimensions=1536` and `metric=cosine`.
 5. Place your PDFs in the `pdf_data` directory and run `data_ingestion.py`
 6. Run the application:
    ```bash
