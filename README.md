@@ -38,11 +38,11 @@ RAG-nificent is a state-of-the-art repository that leverages the power of Retrie
 
 ## Demo
 
-<p align="center">
-  <video src="https://github.com/MaxMLang/RAG-nificent/raw/master/assets/demo.mp4" autoplay loop muted width="650">
-    Your browser does not support the video tag.
-  </video>
-</p>
+### Interactive Query Interface
+![RAG-nificent Demo](https://github.com/MaxMLang/RAG-nificent/raw/master/assets/demo.mov)
+
+### Citation and Source Linking
+![Citation Features](https://github.com/MaxMLang/RAG-nificent/raw/master/assets/citation_demo.mov)
 
 ## How It Works
 
