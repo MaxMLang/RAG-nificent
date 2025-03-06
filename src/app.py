@@ -192,20 +192,7 @@ async def main(message: cl.Message):
     answer = response["answer"]
     source_documents = response.get("context", [])  # Get source documents from context
     
-    elements = []  # type: List[cl.Element]
-    
     if source_documents:
-        for source_doc in source_documents:
-            page_num = source_doc.metadata.get("page", "")
-            pdf_title = source_doc.metadata.get("source", "")
-            # Create a text element for the source citation
-            elements.append(
-                cl.Text(
-                    content=source_doc.page_content,
-                    name=f"page_{page_num}",
-                )
-            )
-        
         # Create a list of unique source citations with links
         source_citations = []
         for doc in source_documents:
@@ -235,7 +222,8 @@ async def main(message: cl.Message):
         else:
             answer += "\nNo sources found"
     
-    await cl.Message(content=answer, elements=elements).send()
+    # Send the message without elements
+    await cl.Message(content=answer).send()
     
     # Update chat history
     chat_history.append(HumanMessage(content=message.content))
