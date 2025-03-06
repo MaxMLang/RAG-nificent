@@ -1,0 +1,21 @@
+# Core dependencies
+flask==2.3.3
+python-dotenv==1.0.0
+chainlit>=1.0.0
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-groq>=0.1.0
+langchain-pinecone>=0.1.0
+langchain-core>=0.1.0
+langchain-community>=0.0.5
+pinecone-client>=2.2.4
+openai>=1.0.0
+
+# Additional dependencies
+regex>=2023.0.0
+
+# Add any other dependencies your project needs
+# For example:
+# requests==2.31.0
+# pandas==2.1.0
+# numpy==1.25.2 
