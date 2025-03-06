@@ -1,4 +1,6 @@
 .env
 .files/*
-.chainlit/*
 src/__pycache__/app.cpython-311.pyc
+app.log
+.DS_Store
+src/__pycache__/app.cpython-310.pyc
