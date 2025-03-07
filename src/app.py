@@ -18,9 +18,11 @@ import tempfile
 import uuid
 from pydantic import BaseModel
 from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.output_parsers.json import parse_partial_json
 import logging
 import traceback
 import sys
+import langchain_core.exceptions
 
 # Configure logging
 logging.basicConfig(
@@ -284,7 +286,7 @@ async def setup_agent(settings):
                 question_answer_chain = create_stuff_documents_chain(
                     llm, 
                     qa_prompt,
-                    output_parser=JsonOutputParser(pydantic_object=ResultWithFollowup)
+                    output_parser=RobustJsonOutputParser(pydantic_object=ResultWithFollowup)
                 )
                 logger.info("Created QA chain with follow-up questions")
             except Exception as e:
@@ -432,6 +434,17 @@ async def main(message: cl.Message):
                 callbacks=[cb]
             )
             logger.info("Chain invocation successful")
+        except langchain_core.exceptions.OutputParserException as e:
+            # Handle the parsing error
+            error_message = str(e)
+            # Extract the actual LLM response from the error message
+            llm_response = error_message.split("Invalid json output:")[1].strip()
+            
+            # Create a fallback response
+            response = {
+                "answer": llm_response,
+                "sources": []  # Empty sources or whatever default you want
+            }
         except Exception as chain_error:
             logger.error(f"Error during chain invocation: {str(chain_error)}")
             logger.error(traceback.format_exc())
@@ -526,14 +539,45 @@ async def main(message: cl.Message):
         # Send the message
         await response_message.send()
         
-        # Update chat history
-        chat_history.append(HumanMessage(content=message.content))
-        chat_history.append(AIMessage(content=answer))
-        cl.user_session.set("chat_history", chat_history)
-        logger.info("Message processed successfully")
+        # Update chat history - FIX: Ensure answer is a string and handle ChatGeneration objects
+        try:
+            # Check if answer is a ChatGeneration or list of ChatGeneration objects
+            if hasattr(answer, 'text'):
+                # If it's a ChatGeneration object, extract the text
+                answer_text = answer.text
+            elif isinstance(answer, list) and len(answer) > 0 and hasattr(answer[0], 'text'):
+                # If it's a list of ChatGeneration objects, extract text from the first one
+                answer_text = answer[0].text
+            elif not isinstance(answer, str):
+                # If it's some other non-string type, convert to string
+                answer_text = str(answer)
+            else:
+                # It's already a string
+                answer_text = answer
+                
+            chat_history.append(HumanMessage(content=message.content))
+            chat_history.append(AIMessage(content=answer_text))
+            cl.user_session.set("chat_history", chat_history)
+            logger.info("Message processed successfully")
+        except Exception as history_error:
+            logger.error(f"Error updating chat history: {str(history_error)}")
+            logger.error(traceback.format_exc())
+            # Continue without updating chat history if there's an error
         
     except Exception as e:
         error_msg = f"Unhandled error in message processing: {str(e)}"
         logger.error(error_msg)
         logger.error(traceback.format_exc())
         await cl.Message(content=f"⚠️ An unexpected error occurred: {str(e)}. Please try again or contact support if the issue persists.").send()
+
+
+class RobustJsonOutputParser(JsonOutputParser):
+    def parse_result(self, result, *, partial=False):
+        try:
+            return super().parse_result(result, partial=partial)
+        except Exception as e:
+            # Return a fallback structure with the raw text
+            return {
+                "answer": result,
+                "sources": []
+            }
