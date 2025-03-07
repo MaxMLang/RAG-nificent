@@ -5,6 +5,7 @@ WORKDIR /app
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first to leverage Docker cache
@@ -15,13 +16,19 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p /app/logs
+RUN mkdir -p /app/logs /app/pdf_data
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
+ENV PORT=8080
 
-# Expose the port Chainlit runs on
-EXPOSE 8000
+# Expose the port that fly.io expects
+EXPOSE 8080
 
-# Command to run the application
-CMD ["chainlit", "run", "src/app.py", "--host", "0.0.0.0", "--port", "8000"] 
+# Create a non-root user to run the application
+RUN useradd -m appuser
+RUN chown -R appuser:appuser /app
+USER appuser
+
+# Command to run the application - explicitly binding to 0.0.0.0:8080
+CMD ["chainlit", "run", "src/app.py", "--host", "0.0.0.0", "--port", "8080"] 
