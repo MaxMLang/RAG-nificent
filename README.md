@@ -38,11 +38,9 @@ RAG-nificent is a state-of-the-art repository that leverages the power of Retrie
 
 ## Demo
 
-### Interactive Query Interface
-![RAG-nificent Demo](https://github.com/MaxMLang/RAG-nificent/raw/master/assets/demo.mov)
+https://github.com/user-attachments/assets/d6b1426d-b2f9-4bea-b8fb-bc63facd4724
 
-### Citation and Source Linking
-![Citation Features](https://github.com/MaxMLang/RAG-nificent/raw/master/assets/citation_demo.mov)
+
 
 ## How It Works
 
