@@ -1,4 +1,5 @@
 # RAG-nificent: An AI Chatbot Powered by LLMs for Citation of Custom PDFs, Reports, and Guidelines
+# Disclaimer: The APIs of this bot are constantly changing. I am trying my best to maintain it, however please refer to the demo video below for the optimal use case.
 ## Now Supports Llama-3.3 by Meta AI and GPT-4o by OpenAI
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
