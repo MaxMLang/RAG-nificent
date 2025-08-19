@@ -17,5 +17,5 @@ regex>=2023.0.0
 # Add any other dependencies your project needs
 # For example:
 # requests==2.31.0
-# pandas==2.1.0
+# pandas==1.25.2
 # numpy==1.25.2 

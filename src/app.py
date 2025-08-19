@@ -57,9 +57,9 @@ pdf_data = {
     "WHO guidelines for malaria (2023)": "https://iris.who.int/bitstream/handle/10665/373339/WHO-UCN-GMP-2023.01-Rev.1-eng.pdf"
 }
 
-# Define fallback models for each provider
-OPENAI_FALLBACK_MODELS = ["gpt-4o-mini", "gpt-3.5-turbo", "gpt-4o"]
-GROQ_FALLBACK_MODELS = ["llama-3.1-8b-instant", "mixtral-8x7b-32768", "gemma2-9b-it"]
+# Updated fallback models for each provider
+OPENAI_FALLBACK_MODELS = ["gpt-4.1-2025-04-14", "gpt-4.1-mini-2025-04-14", "gpt-4o-mini-2024-07-18"]
+GROQ_FALLBACK_MODELS = ["llama-3.1-8b-instant", "llama-3.3-70b-versatile", "deepseek-r1-distill-llama-70b"]
 
 @cl.on_chat_start
 async def on_chat_start():
@@ -70,21 +70,22 @@ async def on_chat_start():
                     id="model",
                     label="Choose Model",
                     values=[
-                        # OpenAI models
-                        "gpt-4o-mini",  # Default OpenAI model
-                        "gpt-4o",
-                        "gpt-4-turbo",
-                        "gpt-3.5-turbo",
-                        # Groq models
-                        "llama-3.1-8b-instant", 
-                        "llama-3.1-70b-versatile", 
-                        "llama-3.3-70b-versatile",
-                        'llama3-70b-8192', 
-                        'llama3-8b-8192',
-                        'mixtral-8x7b-32768',
-                        'gemma2-9b-it'
+                        # OpenAI Models
+                        "gpt-5-mini-2025-08-07",      # Latest GPT-5 model
+                        "gpt-5-nano-2025-08-07",      # GPT-5 nano version
+                        "gpt-oss-120b",                # Open source 120B model
+                        "gpt-4.1-2025-04-14",         # GPT-4.1 full version
+                        "gpt-4.1-mini-2025-04-14",    # GPT-4.1 mini version
+                        "chatgpt-4o-latest",           # Latest ChatGPT-4o
+                        "gpt-4-turbo-2024-04-09",     # GPT-4 Turbo
+                        "gpt-4o-mini-2024-07-18",     # GPT-4o mini
+                        # Groq Models
+                        "llama-3.1-8b-instant",       # Fast 8B model
+                        "llama-3.3-70b-versatile",    # Versatile 70B model
+                        "deepseek-r1-distill-llama-70b", # Distilled 70B model
+                        "qwen/qwen3-32b"               # Qwen 32B model
                     ],
-                    initial_index=0,  # Set gpt-4o-mini as default
+                    initial_index=3,  # Set gpt-4.1-2025-04-14 as default (index 3)
                 ),
                 Slider(
                     id="temperature",
@@ -168,7 +169,14 @@ async def setup_agent(settings):
         temperature = settings['temperature']
         
         # Try to initialize the selected model
-        if selected_model.startswith("gpt"):
+        # Check if it's an OpenAI model (including chatgpt variants)
+        is_openai_model = (
+            selected_model.startswith("gpt") or 
+            selected_model.startswith("chatgpt") or
+            selected_model.startswith("gpt-oss")
+        )
+        
+        if is_openai_model:
             # OpenAI model
             try:
                 llm = ChatOpenAI(
@@ -193,7 +201,7 @@ async def setup_agent(settings):
                         except Exception as fallback_error:
                             logger.error(f"Failed to initialize fallback model {fallback_model}: {str(fallback_error)}")
         else:
-            # Groq model
+            # Groq model (or other providers)
             try:
                 llm = ChatGroq(
                     model=selected_model,
@@ -224,11 +232,11 @@ async def setup_agent(settings):
             # Final fallback to OpenAI's most reliable model
             try:
                 llm = ChatOpenAI(
-                    model="gpt-3.5-turbo",
+                    model="gpt-4o-mini-2024-07-18",
                     temperature=temperature,
                     streaming=True
                 )
-                logger.info("Using final fallback model: gpt-3.5-turbo")
+                logger.info("Using final fallback model: gpt-4o-mini-2024-07-18")
             except Exception as final_error:
                 error_msg = f"All models failed to initialize: {str(final_error)}"
                 logger.critical(error_msg)
@@ -353,7 +361,7 @@ async def setup_agent(settings):
         # Set up a minimal fallback agent
         try:
             # Use the most reliable model as fallback
-            fallback_llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=1.0, streaming=True)
+            fallback_llm = ChatOpenAI(model="gpt-4o-mini-2024-07-18", temperature=1.0, streaming=True)
             
             # Create a simple local vector store
             from langchain_community.embeddings import FakeEmbeddings
