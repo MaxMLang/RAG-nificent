@@ -73,7 +73,6 @@ async def on_chat_start():
                         # OpenAI Models
                         "gpt-5-mini-2025-08-07",      # Latest GPT-5 model
                         "gpt-5-nano-2025-08-07",      # GPT-5 nano version
-                        "gpt-oss-120b",                # Open source 120B model
                         "gpt-4.1-2025-04-14",         # GPT-4.1 full version
                         "gpt-4.1-mini-2025-04-14",    # GPT-4.1 mini version
                         "chatgpt-4o-latest",           # Latest ChatGPT-4o
@@ -172,8 +171,7 @@ async def setup_agent(settings):
         # Check if it's an OpenAI model (including chatgpt variants)
         is_openai_model = (
             selected_model.startswith("gpt") or 
-            selected_model.startswith("chatgpt") or
-            selected_model.startswith("gpt-oss")
+            selected_model.startswith("chatgpt")
         )
         
         if is_openai_model:

@@ -26,7 +26,6 @@ RAG-nificent is a state-of-the-art repository that leverages the power of Retrie
 ### OpenAI Models
 - 🚀 **gpt-5-mini-2025-08-07**: Latest GPT-5 model with advanced capabilities
 - 🚀 **gpt-5-nano-2025-08-07**: GPT-5 nano version for efficient processing
-- 🌟 **gpt-oss-120b**: Open source 120B model for high-performance tasks
 - 📘 **gpt-4.1-2025-04-14**: GPT-4.1 full version with enhanced reasoning
 - 📘 **gpt-4.1-mini-2025-04-14**: GPT-4.1 mini version for cost-effective use
 - 💬 **chatgpt-4o-latest**: Latest ChatGPT-4o with improved conversational abilities
