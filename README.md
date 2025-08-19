@@ -1,7 +1,7 @@
 # RAG-nificent: An AI Chatbot Powered by LLMs for Citation of Custom PDFs, Reports, and Guidelines
 **Disclaimer:** This project is maintained on a best-effort basis as I am not actively using it. APIs may change, and some models have been decommissioned. Please refer to the demo video for the most current optimal use case.
 
-## Now Supports Llama-3.3 by Meta AI and GPT-4o by OpenAI
+## Now Supports Latest GPT-5, GPT-4.1, and Advanced LLM Models
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
@@ -24,19 +24,20 @@ RAG-nificent is a state-of-the-art repository that leverages the power of Retrie
 ## Available Models
 
 ### OpenAI Models
-- 📘 **gpt-4o-mini**: Efficient and cost-effective model for most general-purpose tasks
-- 📘 **gpt-4o**: Advanced model with strong reasoning and instruction-following capabilities
-- 📘 **gpt-4-turbo**: High-performance model optimized for complex reasoning tasks
-- 📘 **gpt-3.5-turbo**: Fast and efficient model for general-purpose conversational AI
+- 🚀 **gpt-5-mini-2025-08-07**: Latest GPT-5 model with advanced capabilities
+- 🚀 **gpt-5-nano-2025-08-07**: GPT-5 nano version for efficient processing
+- 🌟 **gpt-oss-120b**: Open source 120B model for high-performance tasks
+- 📘 **gpt-4.1-2025-04-14**: GPT-4.1 full version with enhanced reasoning
+- 📘 **gpt-4.1-mini-2025-04-14**: GPT-4.1 mini version for cost-effective use
+- 💬 **chatgpt-4o-latest**: Latest ChatGPT-4o with improved conversational abilities
+- ⚡ **gpt-4-turbo-2024-04-09**: GPT-4 Turbo optimized for complex reasoning
+- 💎 **gpt-4o-mini-2024-07-18**: GPT-4o mini for efficient general-purpose tasks
 
 ### Groq Models
-- 🦙 **llama-3.1-8b-instant**: Fast and efficient open-source model for quick interactions
-- 🦙 **llama-3.1-70b-versatile**: Powerful large language model for complex reasoning tasks
-- 🦙 **llama-3.3-70b-versatile**: Latest version of Llama with enhanced capabilities
-- 🦙 **llama3-70b-8192**: Large context window model for processing extensive documents
-- 🦙 **llama3-8b-8192**: Efficient model with extended context window capabilities
-- 🌟 **mixtral-8x7b-32768**: Mixture-of-experts model with very large context window
-- 💎 **gemma2-9b-it**: Google's efficient instruction-tuned language model
+- 🦙 **llama-3.1-8b-instant**: Fast 8B model for quick interactions
+- 🦙 **llama-3.3-70b-versatile**: Versatile 70B model with enhanced capabilities
+- 🔬 **deepseek-r1-distill-llama-70b**: Distilled 70B model for efficient processing
+- 🌐 **qwen/qwen3-32b**: Qwen 32B model for multilingual tasks
 
 ## Demo
 
